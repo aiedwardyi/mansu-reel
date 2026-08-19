@@ -83,7 +83,7 @@ export default function Marquee() {
       tabIndex={0}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Commercial films. Scroll sideways, drag or use the left and right arrow keys."
+      aria-label="광고 영상. 옆으로 스크롤하거나 드래그, 또는 좌우 방향키로 넘기세요."
     >
       <div className={s.bed}>
         {FILMS.map((f, i) => (
@@ -140,7 +140,7 @@ export default function Marquee() {
       </div>
 
       <div className={s.foot}>
-        <nav className={s.strip} aria-label="Jump to film" data-no-drag>
+        <nav className={s.strip} aria-label="영상 바로가기" data-no-drag>
           {FILMS.map((f, i) => (
             <button
               key={f.slug}
@@ -160,7 +160,7 @@ export default function Marquee() {
           data-no-drag
         >
           <span className={s.soundDot} aria-hidden="true" />
-          Sound {sound ? 'on' : 'off'}
+          사운드 {sound ? '켜짐' : '꺼짐'}
         </button>
       </div>
     </div>

@@ -169,7 +169,7 @@ export default function Cut() {
       className={s.wrap}
       tabIndex={0}
       role="region"
-      aria-label="The cut. Eleven commercial films played as one continuous reel. Space plays or pauses, the arrow keys step between films."
+      aria-label="이어보기. 광고 영상 열한 편을 한 편처럼 이어서 재생합니다. 스페이스바로 재생과 정지, 방향키로 영상 이동."
       onKeyDown={onKey}
     >
       <div className={s.stage} onPointerDown={onDown} onPointerUp={onUp}>
@@ -218,7 +218,7 @@ export default function Cut() {
                 key={f.slug}
                 className={`${s.seg} ${i === index ? s.segOn : ''}`}
                 onClick={() => jump(i)}
-                aria-label={`Play ${f.house}${f.line ? ` ${f.line}` : ''}`}
+                aria-label={`${f.house}${f.line ? ` ${f.line}` : ''} 재생`}
                 aria-current={i === index ? 'true' : undefined}
               />
             ))}
@@ -241,7 +241,7 @@ export default function Cut() {
         <div className={s.transport}>
           <div className={s.left}>
             <button className={`u-label ${s.play}`} onClick={toggle}>
-              {playing ? 'Pause' : 'Play'}
+              {playing ? '정지' : '재생'}
             </button>
             <span className={`u-data ${s.clock}`}>
               <span ref={clock}>00:00</span> / {timecode(TOTAL_SECONDS)}
@@ -253,7 +253,7 @@ export default function Cut() {
             onClick={() => setSound((v) => !v)}
           >
             <span className={s.soundDot} aria-hidden="true" />
-            Sound {sound ? 'on' : 'off'}
+            사운드 {sound ? '켜짐' : '꺼짐'}
           </button>
         </div>
       </div>

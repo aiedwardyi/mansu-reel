@@ -25,8 +25,8 @@ const mono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'MANSU — Commercial Reel',
-  description: 'Eleven commercial films. Private demo.',
+  title: 'MANSU 광고영상 릴',
+  description: '열한 편의 광고영상.',
   robots: { index: false, follow: false },
 }
 
@@ -38,7 +38,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="ko" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>
         <Nav />
         {children}

@@ -74,7 +74,7 @@ export default function Reel() {
       tabIndex={0}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Commercial films. Scroll, drag or use the arrow keys."
+      aria-label="광고 영상. 스크롤이나 드래그, 또는 방향키로 넘기세요."
     >
       <div className={s.stage}>
         <div className={s.gate}>
@@ -140,7 +140,7 @@ export default function Reel() {
           </div>
         </div>
 
-        <nav className={s.rail} aria-label="Jump to film" data-no-drag>
+        <nav className={s.rail} aria-label="영상 바로가기" data-no-drag>
           {FILMS.map((f, i) => (
             <button
               key={f.slug}
@@ -157,14 +157,14 @@ export default function Reel() {
       </div>
 
       <footer className={s.foot}>
-        <span className="u-data u-dim">Swipe, scroll or drag</span>
+        <span className="u-data u-dim">스와이프 · 스크롤 · 드래그</span>
         <button
           className={`u-data ${s.sound} ${sound ? s.soundOn : ''}`}
           onClick={() => setSound((v) => !v)}
           data-no-drag
         >
           <span className={s.soundDot} aria-hidden="true" />
-          Sound {sound ? 'on' : 'off'}
+          사운드 {sound ? '켜짐' : '꺼짐'}
         </button>
       </footer>
     </div>

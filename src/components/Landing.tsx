@@ -10,32 +10,32 @@ const DOORS = [
   {
     href: '/demo-1',
     n: '01',
-    name: 'The Reel',
-    blurb: 'One house at a time. Flick through it and the mark turns with the film.',
+    name: '릴',
+    blurb: '한 번에 한 하우스. 넘길 때마다 마크가 영상과 함께 돌아간다.',
     poster: 'chanel-n5',
   },
   {
     href: '/demo-2',
     n: '02',
-    name: 'Marquee',
-    blurb: 'Edge to edge and dark. Drag sideways through the houses.',
+    name: '와이드',
+    blurb: '화면 끝까지, 어둡게. 옆으로 끌어 하우스를 넘긴다.',
     poster: 'lv-ombres',
   },
   {
     href: '/demo-3',
     n: '03',
-    name: 'The Cut',
-    blurb: 'All eleven end to end, on a timeline you can jump around.',
+    name: '이어보기',
+    blurb: '열한 편을 끝까지. 타임라인에서 원하는 지점으로 간다.',
     poster: 'lamer-cream',
   },
 ]
 
 const SPEC = [
-  ['Films', String(FILMS.length)],
-  ['Format', '21:9 · 1440 × 618'],
-  ['Rate', '24 fps'],
-  ['Running', timecode(TOTAL_SECONDS)],
-  ['Year', '2026'],
+  ['편수', String(FILMS.length)],
+  ['포맷', '21:9 · 1440 × 618'],
+  ['프레임', '24 fps'],
+  ['러닝', timecode(TOTAL_SECONDS)],
+  ['연도', '2026'],
 ]
 
 const HERO_MS = 4600
@@ -96,16 +96,16 @@ export default function Landing() {
     <div className={s.page}>
       <section className={s.masthead}>
         <h1 className={s.headline}>
-          <span>One performer.</span>
-          <span>Eleven houses.</span>
-          <span>Fifteen seconds each.</span>
+          <span>배우는 한 사람.</span>
+          <span>하우스는 열한 곳.</span>
+          <span>한 편에 15초.</span>
         </h1>
       </section>
 
       <section className={s.mastAside}>
         <p className={s.lede}>
-          A commercial reel built to test what a commercial has to get right: skin, hair, fabric,
-          glass, weight, and behaviour that comes from the scene rather than the lens.
+          광고가 반드시 잡아내야 하는 것들을 시험한 릴. 피부와 머릿결, 원단, 유리, 무게감,
+          그리고 렌즈가 아니라 장면에서 나오는 연기.
         </p>
         <dl className={s.spec}>
           {SPEC.map(([k, v]) => (
@@ -117,7 +117,7 @@ export default function Landing() {
         </dl>
       </section>
 
-      <section className={s.hero} aria-label="Reel preview">
+      <section className={s.hero} aria-label="릴 미리보기">
         <div className={s.heroFrame}>
           {FILMS.map((f, i) => (
             <video
@@ -146,9 +146,9 @@ export default function Landing() {
       <section className={s.index} aria-labelledby="index-h">
         <header className={s.sectionHead}>
           <h2 id="index-h" className="u-label">
-            The index
+            인덱스
           </h2>
-          <span className="u-data u-dim">Pick a row</span>
+          <span className="u-data u-dim">눌러서 보기</span>
         </header>
         <ol className={s.rows}>
           {FILMS.map((f, i) => (
@@ -175,9 +175,9 @@ export default function Landing() {
       <section className={s.doors} aria-labelledby="doors-h">
         <header className={s.sectionHead}>
           <h2 id="doors-h" className="u-label">
-            Three ways to watch
+            보는 방법 세 가지
           </h2>
-          <span className="u-data u-dim">Same eleven films</span>
+          <span className="u-data u-dim">같은 열한 편</span>
         </header>
         <div className={s.doorGrid}>
           {DOORS.map((d) => (
@@ -187,7 +187,7 @@ export default function Landing() {
                 <img src={src.poster(d.poster)} alt="" loading="lazy" />
               </div>
               <div className={s.doorMeta}>
-                <span className={`u-data ${s.doorN}`}>Demo {d.n}</span>
+                <span className={`u-data ${s.doorN}`}>데모 {d.n}</span>
                 <h3 className={s.doorName}>{d.name}</h3>
                 <p className={s.doorBlurb}>{d.blurb}</p>
               </div>
@@ -198,8 +198,8 @@ export default function Landing() {
 
       <footer className={s.foot}>
         <p className={`u-data u-dim ${s.disclaimer}`}>
-          Every film here is generated. The houses named are not involved: no affiliation, no
-          endorsement, no commercial use. Private demo.
+          이 사이트의 모든 영상은 생성된 것입니다. 언급된 하우스는 제작에 관여하지 않았으며,
+          제휴나 보증 관계가 없고 상업적 용도로 사용되지 않습니다.
         </p>
       </footer>
 

@@ -8,6 +8,9 @@
   --leader: #c8102e;
   --night: #08080a;
 
+  /* Latin face first, Korean resolved by the platform - the convention Korean sites use. */
+  --font-kr: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+
   --nav-h: 58px;
   --pad: clamp(20px, 4.4vw, 68px);
 
@@ -36,7 +39,11 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans), var(--font-kr), 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui,
+    sans-serif;
+  /* Korean breaks anywhere by default; keep-all breaks on spaces so words stay whole. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
   font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -76,10 +83,11 @@ video {
 /* ---------- type roles ---------- */
 
 .u-data {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-mono), var(--font-kr), 'Apple SD Gothic Neo', 'Malgun Gothic',
+    ui-monospace, monospace;
   font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
 }
@@ -87,20 +95,26 @@ video {
 @media (max-width: 620px) {
   .u-data {
     font-size: 12px;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.04em;
   }
 }
 
 .u-label {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-sans), var(--font-kr), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .u-serif {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-serif), var(--font-kr), 'Apple SD Gothic Neo', 'Malgun Gothic', Georgia,
+    serif;
+}
+
+/* Hangul is optically pre-spaced; extra tracking reads as stretched. */
+.u-ko {
+  letter-spacing: normal;
 }
 
 .u-dim {

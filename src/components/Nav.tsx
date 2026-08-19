@@ -5,11 +5,12 @@ import { usePathname } from 'next/navigation'
 import s from './Nav.module.css'
 
 const LINKS = [
-  { href: '/', label: 'Home', short: '' },
-  { href: '/demo-1', label: 'Demo 01', short: '01' },
-  { href: '/demo-2', label: 'Demo 02', short: '02' },
-  { href: '/demo-3', label: 'Demo 03', short: '03' },
-  { href: '/about', label: 'About', short: 'About' },
+  { href: '/', label: '홈', short: '' },
+  { href: '/demo-1', label: '데모 01', short: '01' },
+  { href: '/demo-2', label: '데모 02', short: '02' },
+  { href: '/demo-3', label: '데모 03', short: '03' },
+  { href: '/demo-4', label: '데모 04', short: '04' },
+  { href: '/about', label: '소개', short: '소개' },
 ]
 
 export default function Nav() {
@@ -18,9 +19,9 @@ export default function Nav() {
 
   return (
     <header className={`${s.nav} ${dark ? s.dark : ''}`}>
-      <Link href="/" className={s.brand} aria-label="MANSU — home">
+      <Link href="/" className={s.brand} aria-label="MANSU 홈">
         <span className={s.brandMark}>MANSU</span>
-        <span className={`u-data ${s.brandSub}`}>Commercial film</span>
+        <span className={`u-data ${s.brandSub}`}>광고영상</span>
       </Link>
 
       <nav className={s.links}>
