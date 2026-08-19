@@ -6,10 +6,10 @@ import s from './Nav.module.css'
 
 const LINKS = [
   { href: '/', label: '홈', short: '' },
-  { href: '/demo-1', label: '데모 01', short: '01' },
-  { href: '/demo-2', label: '데모 02', short: '02' },
-  { href: '/demo-3', label: '데모 03', short: '03' },
-  { href: '/demo-4', label: '데모 04', short: '04' },
+  { href: '/demo-1', label: '릴', short: '릴' },
+  { href: '/demo-2', label: '와이드', short: '와이드' },
+  { href: '/demo-3', label: '이어보기', short: '이어보기' },
+  { href: '/demo-4', label: '스튜디오', short: '스튜디오' },
   { href: '/about', label: '소개', short: '소개' },
 ]
 

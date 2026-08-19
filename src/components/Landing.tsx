@@ -28,6 +28,13 @@ const DOORS = [
     blurb: '열한 편을 끝까지. 타임라인에서 원하는 지점으로 간다.',
     poster: 'lamer-cream',
   },
+  {
+    href: '/demo-4',
+    n: '04',
+    name: '스튜디오',
+    blurb: '한 편씩 내려보는 인덱스. 브랜드와 촬영 노트를 함께 읽는다.',
+    poster: 'hermes-rouge',
+  },
 ]
 
 const SPEC = [
@@ -175,9 +182,9 @@ export default function Landing() {
       <section className={s.doors} aria-labelledby="doors-h">
         <header className={s.sectionHead}>
           <h2 id="doors-h" className="u-label">
-            보는 방법 세 가지
+            보는 방법
           </h2>
-          <span className="u-data u-dim">같은 열한 편</span>
+          <span className="u-data u-dim">같은 열한 편, 네 가지 구성</span>
         </header>
         <div className={s.doorGrid}>
           {DOORS.map((d) => (
@@ -187,7 +194,7 @@ export default function Landing() {
                 <img src={src.poster(d.poster)} alt="" loading="lazy" />
               </div>
               <div className={s.doorMeta}>
-                <span className={`u-data ${s.doorN}`}>데모 {d.n}</span>
+                <span className={`u-data ${s.doorN}`}>{d.n}</span>
                 <h3 className={s.doorName}>{d.name}</h3>
                 <p className={s.doorBlurb}>{d.blurb}</p>
               </div>

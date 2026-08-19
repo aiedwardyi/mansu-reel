@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Reel from '@/components/Reel'
 
-export const metadata: Metadata = { title: '데모 01 · 릴' }
+export const metadata: Metadata = { title: '릴 · MANSU' }
 
 export default function Demo1() {
   return (
