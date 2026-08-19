@@ -1,0 +1,398 @@
+@property --play {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.wrap {
+  --rig: 140px;
+  --frame: clamp(12px, 2.4vh, 30px);
+  --line: rgba(255, 255, 255, 0.1);
+  --soft: rgba(255, 255, 255, 0.44);
+  --softer: rgba(255, 255, 255, 0.3);
+
+  height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  background: var(--night);
+  color: #fff;
+  outline: none;
+  overflow: hidden;
+}
+
+/* the page frame keeps the strip under the fixed nav transparent; paint it night */
+.wrap::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--night);
+  pointer-events: none;
+}
+
+/* ---------- screen ---------- */
+
+.stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--frame) var(--pad);
+  overflow: hidden;
+}
+
+.screen {
+  position: relative;
+  width: min(
+    92vw,
+    1500px,
+    calc((100svh - var(--nav-h) - var(--rig) - var(--frame) * 2) * 2206 / 946)
+  );
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 2206 / 946;
+  background: #000;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  opacity: 0;
+}
+
+.live {
+  opacity: 1;
+}
+
+/* ---------- lower third ---------- */
+
+.lower {
+  position: absolute;
+  left: clamp(14px, 2.6%, 34px);
+  bottom: clamp(12px, 5%, 32px);
+  width: clamp(216px, 19%, 268px);
+  display: grid;
+  justify-items: start;
+  text-align: left;
+  color: #fff;
+  --ink-2: rgba(255, 255, 255, 0.62);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  animation: lower 3.9s var(--ease-out) forwards;
+}
+
+/* HouseMark centres itself; reach its two wrappers to pin the lockup left */
+.lower > div {
+  place-items: start;
+}
+
+.lower > div > div {
+  align-items: flex-start;
+  text-align: left;
+}
+
+@keyframes lower {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  14%,
+  82% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/* ---------- slate ---------- */
+
+.meta {
+  position: absolute;
+  top: clamp(11px, 3.4%, 26px);
+  right: clamp(12px, 2.6%, 28px);
+  max-width: 46%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  animation: slate 0.5s var(--ease-out) both;
+}
+
+@keyframes slate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.product {
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(11px, 0.86vw, 14px);
+  line-height: 1.3;
+  color: var(--soft);
+}
+
+.where {
+  color: var(--softer);
+  line-height: 1.5;
+}
+
+/* ---------- rig ---------- */
+
+.rig {
+  flex: 0 0 auto;
+  min-height: var(--rig);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(12px, 1.8vh, 20px);
+  padding: 0 var(--pad) clamp(14px, 2.2vh, 22px);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.track {
+  --sweep: calc(var(--play) * 100%);
+  position: relative;
+  display: flex;
+  height: clamp(28px, 4vh, 38px);
+  border: 1px solid var(--line);
+}
+
+.seg {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.025);
+  transition: background 0.35s var(--ease-out);
+}
+
+.seg + .seg::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.seg:hover {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.segOn,
+.segOn:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* --play is registered non-inheriting, so the track hands it down as plain --sweep */
+.head {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 1px);
+  border-left: 1px solid var(--leader);
+  transform: translateX(var(--sweep));
+  will-change: transform;
+  pointer-events: none;
+}
+
+.names {
+  display: flex;
+}
+
+.name {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 4px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--softer);
+  transition: color 0.35s var(--ease-out);
+}
+
+.nameOn {
+  color: #fff;
+}
+
+.now {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* ---------- transport ---------- */
+
+.transport {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px clamp(14px, 2vw, 24px);
+  padding-top: clamp(11px, 1.6vh, 16px);
+  border-top: 1px solid var(--line);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 26px);
+}
+
+.play {
+  color: #fff;
+  transition: color 0.25s var(--ease-out);
+}
+
+.play:hover {
+  color: var(--leader);
+}
+
+.clock {
+  color: var(--soft);
+}
+
+.sound {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--softer);
+  transition: color 0.25s var(--ease-out);
+}
+
+.sound:hover {
+  color: #fff;
+}
+
+.soundDot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.soundOn {
+  color: #fff;
+}
+
+.soundOn .soundDot {
+  background: var(--leader);
+  border-color: var(--leader);
+}
+
+/* ---------- responsive ---------- */
+
+@media (min-width: 901px) {
+  .now {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .wrap {
+    --rig: 132px;
+  }
+  .names {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .where {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .left {
+    gap: 14px;
+  }
+  .meta {
+    max-width: 56%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .head {
+    will-change: auto;
+  }
+  .lower {
+    display: none;
+  }
+  .meta {
+    animation: none;
+  }
+}
+
+/* On a phone a 21:9 screen is short; widen it and burn the slate into the bottom edge. */
+@media (max-width: 620px) {
+  .screen {
+    width: 100vw;
+    border-left: none;
+    border-right: none;
+  }
+  /* A 21:9 frame is short on a portrait phone. Let the stage shrink to the film and centre the
+     whole cluster, otherwise the timeline strands itself ~250px below the picture. */
+  .wrap {
+    justify-content: center;
+  }
+  .stage {
+    flex: 0 1 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .rig {
+    padding-top: 4px;
+  }
+  .track {
+    height: 48px;
+  }
+  .sound {
+    padding: 14px 6px;
+    margin: -14px -6px;
+  }
+  .meta {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: none;
+    text-align: left;
+    gap: 3px;
+    padding: 26px 12px 8px;
+    background: linear-gradient(to top, rgba(8, 8, 10, 0.86), transparent);
+    text-shadow: none;
+  }
+  .meta p:first-child {
+    font-size: 14px;
+  }
+  .lower {
+    display: none;
+  }
+}

@@ -1,0 +1,77 @@
+/* Size containment means this box must be given a definite width; max-content collapses it. */
+.box {
+  container-type: inline-size;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: inherit;
+  user-select: none;
+}
+
+.word {
+  display: block;
+  line-height: 0.94;
+  letter-spacing: var(--track);
+  /* tracking adds a trailing gap; pull the block back to true centre */
+  text-indent: var(--track);
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.sans {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 300;
+}
+
+/* ---- hero ---- */
+
+.hero .word {
+  font-size: clamp(19px, min(6vw, 96cqw / var(--fit)), 76px);
+}
+
+.hero .line {
+  margin-top: clamp(12px, 2.4cqw, 22px);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.monogram {
+  width: clamp(44px, 13cqw, 82px);
+  height: auto;
+  margin-bottom: clamp(14px, 3cqw, 28px);
+  opacity: 0.9;
+}
+
+.tick {
+  display: block;
+  width: 26px;
+  height: 1px;
+  background: var(--leader);
+}
+
+/* ---- inline ---- */
+
+.inline .word {
+  font-size: clamp(11px, min(3vw, 92cqw / var(--fit)), 15px);
+}
+
+.inline .line {
+  display: none;
+}

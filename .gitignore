@@ -1,0 +1,12 @@
+node_modules
+.next
+.vercel
+*.tsbuildinfo
+
+.vercel
+.env*
+.next-verify
+_shots
+
+# 18MB of brand-referencing film. Public repo, so these ship out-of-band.
+public/media

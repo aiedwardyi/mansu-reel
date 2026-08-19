@@ -1,0 +1,353 @@
+@property --d {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.wrap {
+  height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+  outline: none;
+  overflow: hidden;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr) 84px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(24px, 4vw, 68px);
+  row-gap: clamp(16px, 2.6vh, 34px);
+  padding: clamp(16px, 2.6vh, 40px) var(--pad) 0;
+}
+
+/* ---------- strip ---------- */
+
+.gate {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.5;
+  max-height: 100%;
+  overflow: hidden;
+  contain: paint;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 15%, #000 85%, transparent 100%);
+}
+
+.plate {
+  --ad: max(var(--d), calc(-1 * var(--d)));
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 2206 / 946;
+  background: var(--plate);
+  transform: translate3d(0, calc(-50% + var(--d) * (100% + 22px)), 0);
+  opacity: calc(1.42 - var(--ad) * 1.2);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.off {
+  opacity: 0 !important;
+  pointer-events: none;
+  content-visibility: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- caption ---------- */
+
+.caption {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  column-gap: clamp(24px, 4vw, 68px);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+
+.captionMain {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.captionSide {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.captionRow {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(12px, 1.8vw, 28px);
+  flex-wrap: wrap;
+}
+
+.product {
+  margin: 0;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(15px, 1.35vw, 20px);
+  line-height: 1.3;
+}
+
+.craft {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ---------- drum ---------- */
+
+.drumCol {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-width: 0;
+  border-left: 1px solid var(--rule);
+}
+
+.drum {
+  position: relative;
+  width: 100%;
+  height: clamp(150px, 22vh, 230px);
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
+}
+
+.face {
+  --ad: max(var(--d), calc(-1 * var(--d)));
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: rotateX(calc(var(--d) * -68deg));
+  transform-origin: 50% 50% clamp(-190px, -19vh, -125px);
+  opacity: calc(1.14 - var(--ad) * 1.06);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.location {
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ---------- rail ---------- */
+
+.rail {
+  grid-column: 3;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 13px;
+  height: 100%;
+  padding: 0;
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 14px;
+  width: 100%;
+}
+
+.tickBar {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background: var(--ink-3);
+  transition: width 0.5s var(--ease-out), background 0.4s var(--ease-out);
+}
+
+.tick:hover .tickBar {
+  width: 30px;
+  background: var(--ink);
+}
+
+.tickOn .tickBar {
+  width: 40px;
+  height: 2px;
+  background: var(--leader);
+}
+
+.tickName {
+  position: absolute;
+  right: 26px;
+  white-space: nowrap;
+  color: var(--ink-2);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  pointer-events: none;
+}
+
+.tick:hover .tickName {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- foot ---------- */
+
+.foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--pad);
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(14px, 2.4vh, 30px);
+}
+
+.sound {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 6px;
+  margin: -14px -6px;
+  color: var(--ink-2);
+  transition: color 0.25s var(--ease-out);
+}
+
+.sound:hover {
+  color: var(--ink);
+}
+
+.soundDot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--ink-3);
+  border-radius: 50%;
+  transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.soundOn {
+  color: var(--ink);
+}
+
+.soundOn .soundDot {
+  background: var(--leader);
+  border-color: var(--leader);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1000px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr) 56px;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    align-content: center;
+    column-gap: clamp(12px, 3vw, 26px);
+    row-gap: 18px;
+  }
+  .gate {
+    grid-column: 1;
+    grid-row: 1;
+    aspect-ratio: 1.36;
+  }
+  .drumCol {
+    grid-column: 1;
+    grid-row: 2;
+    height: auto;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+  .drum {
+    height: clamp(112px, 16vh, 160px);
+  }
+  .face {
+    transform-origin: 50% 50% clamp(-140px, -16vh, -96px);
+  }
+  .caption {
+    grid-column: 1;
+    grid-row: 3;
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
+  .rail {
+    grid-column: 2;
+    grid-row: 1 / -1;
+  }
+  .craft {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr) 34px;
+    padding-top: 12px;
+  }
+  .gate {
+    aspect-ratio: 1.24;
+  }
+  .drum {
+    height: clamp(96px, 13vh, 128px);
+  }
+  .drumCol {
+    padding-top: 14px;
+  }
+  .rail {
+    gap: 2px;
+  }
+  .tick {
+    height: clamp(30px, 6.2vh, 44px);
+  }
+  .tickBar {
+    width: 12px;
+  }
+  .tickOn .tickBar {
+    width: 26px;
+  }
+  .captionRow > *:nth-child(n + 4) {
+    display: none;
+  }
+  .tickName {
+    display: none;
+  }
+  .product {
+    font-size: 15px;
+  }
+  .foot {
+    padding: 13px var(--pad);
+  }
+  .sound {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .face {
+    will-change: auto;
+  }
+}
