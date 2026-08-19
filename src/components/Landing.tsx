@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import HouseMark from './HouseMark'
-import { FILMS, src, timecode, TOTAL_SECONDS } from '@/lib/films'
+import { FILMS, clip, src, timecode, TOTAL_SECONDS } from '@/lib/films'
+import { useSmallScreen } from '@/lib/useSmallScreen'
 import s from './Landing.module.css'
 
 const DOORS = [
@@ -48,6 +49,7 @@ const SPEC = [
 const HERO_MS = 4600
 
 export default function Landing() {
+  const small = useSmallScreen()
   const [hero, setHero] = useState(0)
   const [hover, setHover] = useState<number | null>(null)
   const peek = useRef<HTMLDivElement>(null)
@@ -134,7 +136,7 @@ export default function Landing() {
               }}
               className={`${s.heroVideo} ${i === hero ? s.heroOn : ''}`}
               poster={src.poster(f.slug)}
-              src={near(i) ? src.lo(f.slug) : undefined}
+              src={small !== null && near(i) ? clip(f.slug, small) : undefined}
               preload={near(i) ? 'auto' : 'none'}
               muted
               playsInline

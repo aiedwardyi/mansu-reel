@@ -94,7 +94,7 @@ export default function Marquee() {
             }}
             className={`${s.video} ${s.off}`}
             poster={src.poster(f.slug)}
-            src={small !== null && loaded.has(i) ? clip(f.slug, small) : undefined}
+            src={small !== null && loaded.has(i) ? src.hi(f.slug) : undefined}
             preload={isNear(i) ? 'auto' : 'none'}
             aria-hidden={i !== index}
             loop
